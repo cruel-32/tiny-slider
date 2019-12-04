@@ -1,7 +1,7 @@
 # Tiny Swiper React (need react v16+)
 
 ## spec
-- No dependency. (Only react)
+- No dependency. (Only react & webpack)
 - Swiping can be used only on mobile.
 
 ## Get started
