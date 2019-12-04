@@ -1,4 +1,4 @@
-# Tiny Swiper (need react v16+)
+# Tiny Swiper React (need react v16+)
 
 ## spec
 - No dependency. (Only react)
