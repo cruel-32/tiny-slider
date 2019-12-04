@@ -1,3 +1,40 @@
-# tiny slider
+# Tiny Swiper (need react v16+)
 
-## 기본기능만 있는 react slider (react v16+ 필요)
+## spec
+- No dependency. (Only react)
+- Swiping can be used only on mobile.
+
+## Get started
+```js
+import { MiniReactSwiper } from 'tiny-swiper'
+
+const App = ()=>{
+    const [ items ] = useState([
+        <img src="/img1.jpg" alt="imag1" />,
+        <img src="/img2.jpg" alt="imag2" />,
+        <img src="/img3.jpg" alt="imag3" />,
+        <div>jsx</div>
+    ])
+    
+    return (
+        <YourApp>
+            <MiniReactSwiper items={items} />
+        </YourApp>
+    )
+}
+```
+
+## options
+
+- items : Array
+
+- useIndicator : Boolean
+
+- useDirector : Boolean
+
+- indicatorClass : String
+
+- directorLeftClass : String
+
+- directorRightClass : String
+
