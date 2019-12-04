@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import img1 from './images/1.png';
+import img2 from './images/2.png';
+import img3 from './images/3.png';
 
-function App() {
+import { MiniReactSwiper, } from './tiny-swiper'
+
+const App = ()=>{
+  const [ items ] = useState([
+    <img src={img1} className="App-logo" alt="logo" />,
+    <img src={img2} className="App-logo" alt="logo" />,
+    <img src={img3} className="App-logo" alt="logo" />,
+    <div>
+      <h1>jsx</h1>
+      <p>
+        jsx로 만든 마지막 슬라이드입니다.
+        jsx로 만든 마지막 슬라이드입니다.
+        jsx로 만든 마지막 슬라이드입니다.
+        jsx로 만든 마지막 슬라이드입니다.
+      </p>
+    </div>
+  ])
+
+
   return (
     <div className="App">
-      <header className="App-header">
+      <header style={{width:'200px'}}>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+
+      <div style={{width:'300px', background:'#333'}} >
+
+        <MiniReactSwiper
+          items={items}
+          useIndicator={true}
+          useDirector={true}
+          indicatorClass={"override"}
+          directorLeftClass={"override"}
+          directorRightClass={"override"}
+        >
+        </MiniReactSwiper>
+
+      </div>
+
+      <footer style={{width:'200px'}}>
+        <img src={logo} className="App-logo" alt="logo" />
+      </footer>
+
     </div>
   );
 }
