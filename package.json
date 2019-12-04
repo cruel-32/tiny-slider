@@ -2,8 +2,8 @@
   "name": "tiny-swiper-storybook",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "./src/dist/index.js",
+  "module": "./src/dist/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development NODE_PATH=src node scripts/start.js",
     "build": "cross-env NODE_ENV=production NODE_PATH=src node scripts/build.js",
