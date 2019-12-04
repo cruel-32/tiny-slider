@@ -5,9 +5,8 @@ import img3 from 'images/3.png';
 
 import { MiniReactSwiper, } from 'tiny-swiper'
 
-// import * as slide from '../dist/index'
-const slide = require('../dist/index')
-console.log('slide : ', slide)
+// import * as slide from './dist/index'
+// console.log('slide : ', slide)
 
 const App = ()=>{
   const [ items ] = useState([
