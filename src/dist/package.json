@@ -1,0 +1,15 @@
+{
+  "name": "tiny-swiper",
+  "version": "0.0.1",
+  "description": "tiny swiper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

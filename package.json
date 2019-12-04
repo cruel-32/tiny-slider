@@ -2,11 +2,19 @@
   "name": "tiny-swiper",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development NODE_PATH=src node scripts/start.js",
+    "build": "cross-env NODE_ENV=production NODE_PATH=src node scripts/build.js",
+    "test": "cross-env NODE_ENV=production NODE_PATH=src node scripts/test.js",
+    "sb": "cross-env NODE_ENV=development NODE_PATH=src start-storybook -p 6006",
+    "build-sb": "cross-env NODE_ENV=development NODE_PATH=src build-storybook"
+  },
   "dependencies": {
     "@babel/core": "7.6.0",
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/plugin-transform-react-jsx-self": "^7.7.4",
     "@babel/plugin-transform-react-jsx-source": "^7.7.4",
+    "@storybook/addon-backgrounds": "^5.2.8",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
@@ -17,6 +25,7 @@
     "babel-preset-react-app": "^9.0.2",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "cross-env": "^6.0.3",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "5.1.0",
@@ -62,11 +71,6 @@
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.1.1",
     "workbox-webpack-plugin": "4.3.1"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -135,5 +139,11 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8"
   }
 }

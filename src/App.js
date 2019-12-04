@@ -1,10 +1,9 @@
 import React, { useState, } from 'react';
-import logo from './logo.svg';
-import img1 from './images/1.png';
-import img2 from './images/2.png';
-import img3 from './images/3.png';
+import img1 from 'images/1.png';
+import img2 from 'images/2.png';
+import img3 from 'images/3.png';
 
-import { MiniReactSwiper, } from './tiny-swiper'
+import { MiniReactSwiper, } from 'tiny-swiper'
 
 const App = ()=>{
   const [ items ] = useState([
@@ -25,10 +24,6 @@ const App = ()=>{
 
   return (
     <div className="App">
-      <header style={{width:'200px'}}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-
       <div style={{width:'300px', background:'#333'}} >
 
         <MiniReactSwiper
@@ -42,10 +37,6 @@ const App = ()=>{
         </MiniReactSwiper>
 
       </div>
-
-      <footer style={{width:'200px'}}>
-        <img src={logo} className="App-logo" alt="logo" />
-      </footer>
 
     </div>
   );
