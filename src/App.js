@@ -5,10 +5,6 @@ import img3 from 'images/3.png';
 
 import { MiniReactSwiper, } from 'tiny-swiper-react'
 
-import slide, * as slide2 from './dist/index'
-console.log('slide : ', slide)
-console.log('slide2 : ', slide2)
-
 const App = ()=>{
   const [ items ] = useState([
     <img src={img1} className="App-logo" alt="logo" />,

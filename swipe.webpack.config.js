@@ -1,14 +1,28 @@
 const path = require("path");
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'development'
 
 module.exports = {
     entry: "./src/tiny-swiper-react/index.js",
     output: {
         filename: "index.js",
         path: path.resolve(__dirname + "/dist"),
-        libraryTarget: "commonjs-module",
-        library:"tsr"
+        libraryTarget: "umd",
+        library:"tinySwiperReact"
+    },
+    externals : {
+        'react' : {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        },
+        'react-dom' : {
+            root: 'ReactDOM',
+            commonjs2: 'react-dom',
+            commonjs: 'react-dom',
+            amd: 'react-dom'
+        }
     },
     module: {
         rules: [

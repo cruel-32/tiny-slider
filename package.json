@@ -1,7 +1,6 @@
 {
   "name": "tiny-swiper-react",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "scripts": {
@@ -82,7 +81,8 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.1.1",
-    "workbox-webpack-plugin": "4.3.1"
+    "workbox-webpack-plugin": "4.3.1",
+    "@babel/preset-react": "^7.7.4"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -153,7 +153,4 @@
       "@babel/react"
     ]
   },
-  "dependencies": {
-    "@babel/preset-react": "^7.7.4"
-  }
 }
