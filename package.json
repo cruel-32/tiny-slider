@@ -1,9 +1,9 @@
 {
-  "name": "tiny-swiper-storybook",
+  "name": "tiny-swiper-react",
   "version": "0.1.0",
   "private": true,
-  "main": "./src/dist/index.js",
-  "module": "./src/dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development NODE_PATH=src node scripts/start.js",
     "build": "cross-env NODE_ENV=production NODE_PATH=src node scripts/build.js",
@@ -14,15 +14,7 @@
   },
   "peerDependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "@babel/core": "7.0.0",
-    "@babel/plugin-transform-react-jsx": "^7.0.0",
-    "@babel/plugin-transform-react-jsx-self": "^7.0.0",
-    "@babel/plugin-transform-react-jsx-source": "^7.0.0",
-    "webpack": "^4.0.0",
-    "babel-loader": "^8.0.0",
-    "css-loader": "^2.0.0",
-    "node-sass": "^4.0.0"
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",

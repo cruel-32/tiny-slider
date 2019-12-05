@@ -3,7 +3,7 @@ import img1 from 'images/1.png';
 import img2 from 'images/2.png';
 import img3 from 'images/3.png';
 
-import { MiniReactSwiper, } from 'tiny-swiper'
+import { MiniReactSwiper, } from 'tiny-swiper-react'
 
 // import * as slide from './dist/index'
 // console.log('slide : ', slide)
