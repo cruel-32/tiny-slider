@@ -152,5 +152,5 @@
       "react-app",
       "@babel/react"
     ]
-  },
+  }
 }
