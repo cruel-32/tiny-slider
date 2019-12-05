@@ -5,18 +5,18 @@ export const SwiperItem = props => {
     const { children, width } = props
 
     return (
-        <div className="mrswiper__item" style={{width}} >{children}</div>
+        <div className="tnswiper__item" style={{width}} >{children}</div>
     )
 }
 
-export const MiniReactSwiper = props => {
+export const TinySwiper = props => {
     const {
         items, before, after, children, useIndicator,
         indicatorClass, useDirector,
         directorLeftClass, directorRightClass
     } = props
     
-    const mrSwiperRef = useRef(null)
+    const tnSwiperRef = useRef(null)
     const swiperWrapRef = useRef(null)
 
     const slidingItems = children || items;
@@ -29,7 +29,7 @@ export const MiniReactSwiper = props => {
     const [mouseX, setMouseX] = useState(0)
 
     useEffect(() => {
-        setWidth(mrSwiperRef.current ? mrSwiperRef.current.offsetWidth : 0)
+        setWidth(tnSwiperRef.current ? tnSwiperRef.current.offsetWidth : 0)
         setHeight(swiperWrapRef.current ? swiperWrapRef.current.offsetHeight : 0)
         setLeft(swiperWrapRef.current ? -(index * width) : 0)
     }, [slidingItems, index, width, mouseX])
@@ -95,8 +95,8 @@ export const MiniReactSwiper = props => {
     }
 
     return (
-        <div className='mrswiper mrswiper--visible' ref={mrSwiperRef} style={{height:height+'px'}} >
-            <div className={`mrswiper__wrapper mrswiper__wrapper--display-flex mrswiper__wrapper--align-top ${moving ? 'mrswiper__wrapper--moving' : ''} `}
+        <div className='tnswiper tnswiper--visible' ref={tnSwiperRef} style={{height:height+'px'}} >
+            <div className={`tnswiper__wrapper tnswiper__wrapper--display-flex tnswiper__wrapper--align-top ${moving ? 'tnswiper__wrapper--moving' : ''} `}
                 style={{left:(left-width)+'px', width:width*(slidingItems.length+2)}}
                 ref={swiperWrapRef}
                 onTransitionEnd={(e)=>{afterSwipe(e)}}
@@ -115,12 +115,12 @@ export const MiniReactSwiper = props => {
 
             {
                 useIndicator && (
-                    <div className={"mrswiper__indicator-wrap mrswiper__indicator-wrap--pos-bot "+indicatorClass}>
+                    <div className={"tnswiper__indicator-wrap tnswiper__indicator-wrap--pos-bot "+indicatorClass}>
                         {
                             // index가 slidingItems.length와 같거나 높아지면 0으로. index가 0보다 작아지면 slidingItems.length-1로.
                             slidingItems.map((slidingItem, idx)=>(
-                                <button className={"mrswiper__indicator " +
-                                    (idx === (index >= slidingItems.length ? 0 : (index < 0 ? slidingItems.length-1 : index) ) ? "mrswiper__indicator--active" :  "")}
+                                <button className={"tnswiper__indicator " +
+                                    (idx === (index >= slidingItems.length ? 0 : (index < 0 ? slidingItems.length-1 : index) ) ? "tnswiper__indicator--active" :  "")}
                                     onClick={()=>{swipe(idx)}} key={idx}
                                 >{idx}
                                 </button>
@@ -133,8 +133,8 @@ export const MiniReactSwiper = props => {
             {
                 useDirector && (
                     <Fragment>
-                        <button  onClick={()=>{swipe(index-1)}} className={"mrswiper__director mrswiper__director--dir-left "+directorLeftClass}>left</button>
-                        <button  onClick={()=>{swipe(index+1)}} className={"mrswiper__director mrswiper__director--dir-right "+directorRightClass}>right</button>
+                        <button  onClick={()=>{swipe(index-1)}} className={"tnswiper__director tnswiper__director--dir-left "+directorLeftClass}>left</button>
+                        <button  onClick={()=>{swipe(index+1)}} className={"tnswiper__director tnswiper__director--dir-right "+directorRightClass}>right</button>
                     </Fragment>
                 )
             }

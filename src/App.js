@@ -3,7 +3,7 @@ import img1 from 'images/1.png';
 import img2 from 'images/2.png';
 import img3 from 'images/3.png';
 
-import { MiniReactSwiper, } from 'tiny-swiper-react'
+import { TinySwiper, } from './tiny-swiper-react'
 
 const App = ()=>{
   const [ items ] = useState([
@@ -26,7 +26,7 @@ const App = ()=>{
     <div className="App">
       <div style={{width:'300px', background:'#333'}} >
 
-        <MiniReactSwiper
+        <TinySwiper
           items={items}
           useIndicator={true}
           useDirector={true}
@@ -34,7 +34,7 @@ const App = ()=>{
           directorLeftClass={"override"}
           directorRightClass={"override"}
         >
-        </MiniReactSwiper>
+        </TinySwiper>
 
       </div>
 
