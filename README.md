@@ -1,12 +1,12 @@
 # Tiny Swiper React (need react v16+)
 
 ## spec
-- No dependency. (Only react & webpack)
+- No dependency. (Only react)
 - Swiping can be used only on mobile.
 
 ## Get started
 ```js
-import { MiniReactSwiper } from 'tiny-swiper'
+import { TinySwiper } from './tiny-swiper-react'
 
 const App = ()=>{
     const [ items ] = useState([
@@ -18,7 +18,7 @@ const App = ()=>{
     
     return (
         <YourApp>
-            <MiniReactSwiper items={items} />
+            <TinySwiper items={items} />
         </YourApp>
     )
 }
