@@ -149,7 +149,11 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "@babel/react"
     ]
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.7.4"
   }
 }
