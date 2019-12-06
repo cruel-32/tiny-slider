@@ -4,7 +4,7 @@ import { Button } from '@storybook/react/demo';
 
 // import { storiesOf } from '@storybook/react';
 
-import { MiniReactSwiper, } from 'tiny-swiper'
+import { TinySwiper, } from 'tiny-swiper-react'
 import img1 from 'images/1.png';
 import img2 from 'images/2.png';
 import img3 from 'images/3.png';
@@ -43,19 +43,35 @@ export const defaultUsing = ()=>{
     setItems([...items.slice(0,items.length-1)])
   }
 
+  const beforeTest = ({prevIndex, nextIndex})=>{
+    console.log('beforeTest prevIndex : ', prevIndex)
+    console.log('beforeTest nextIndex : ', nextIndex)
+  }
+  const afterTest = ({currentIndex})=>{
+    console.log('afterTest currentIndex : ', currentIndex)
+  }
+  const swipingTest = ({start, event,index})=>{
+    console.log('swipingTest start : ', start)
+    console.log('swipingTest event : ', event)
+    console.log('swipingTest index : ', index)
+  }
+
   return (
     <div>
       <Button onClick={()=>{addItem()}}>add new item</Button>
       <Button onClick={()=>{removeLastItem()}}>remove last item</Button>
-      <MiniReactSwiper
+      <TinySwiper
         items={items}
         useIndicator={true}
         useDirector={true}
         indicatorClass={"override"}
         directorLeftClass={"override"}
         directorRightClass={"override"}
+        before={beforeTest}
+        after={afterTest}
+        swiping={swipingTest}
       >
-      </MiniReactSwiper>
+      </TinySwiper>
     </div>
   )
 }

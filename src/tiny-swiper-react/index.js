@@ -13,7 +13,7 @@ export const TinySwiper = props => {
     const {
         items, before, after, children, useIndicator,
         indicatorClass, useDirector,
-        directorLeftClass, directorRightClass
+        directorLeftClass, directorRightClass, swiping
     } = props
     
     const tnSwiperRef = useRef(null)
@@ -25,78 +25,80 @@ export const TinySwiper = props => {
     const [height, setHeight] = useState(0)
     const [index, setIndex] = useState(0)
     const [left, setLeft] = useState(0)
-    const [moving, setMoving] = useState(false)
-    const [mouseX, setMouseX] = useState(0)
+    const [isMoving, setIsMoving] = useState(false)
+    const [mousePos, setMousePos] = useState({clientX:0,clientY:0})
 
     useEffect(() => {
         setWidth(tnSwiperRef.current ? tnSwiperRef.current.offsetWidth : 0)
         setHeight(swiperWrapRef.current ? swiperWrapRef.current.offsetHeight : 0)
         setLeft(swiperWrapRef.current ? -(index * width) : 0)
-    }, [slidingItems, index, width, mouseX])
+    }, [slidingItems, index, width, mousePos])
 
-    const beforeSwipe = ()=>{
-        setMoving(true)
+    const getAvailableIndex = index =>{
+        let itemIndex = index;
+        if(itemIndex < 0) itemIndex = slidingItems.length - 1
+        if(itemIndex >= slidingItems.length) itemIndex = 0
+        return itemIndex
+    }
+
+    const beforeSwipe = (prevIndex, nextIndex)=>{
+        setIsMoving(true)
         before && before({
-            index:index-1,
+            prevIndex : getAvailableIndex(prevIndex),
+            nextIndex : getAvailableIndex(nextIndex),
         })
     }
 
     const afterSwipe = ()=>{
-        setMoving(false)
-        replaceCenter();
+        setIsMoving(false)
+        setIndex(getAvailableIndex(index))
         after && after({
-            index:index-1,
+            currentIndex : getAvailableIndex(index)
         })
     }
 
-    const replaceCenter = () => {
-        if(index < 0){
-            setIndex(slidingItems.length-1)
-        } else if(index >= slidingItems.length){
-            setIndex(0)
-        }
-    }
+    const swipe = (selectedIndex) =>{
+        const prevIndex = index%slidingItems.length;
+        const nextIndex = selectedIndex%slidingItems.length;
 
-    const swipe = (newIndex) =>{
-        const idx = index%slidingItems.length;
-        const newIdx = newIndex%slidingItems.length;
-
-        if(moving || idx === newIdx){//움직이는 중이거나 같은 숫자가 들어오면
+        if(isMoving || prevIndex === nextIndex){
             return
         }
 
-        beforeSwipe()
-        setIndex(newIndex)
+        beforeSwipe(prevIndex, nextIndex)
+        setIndex(selectedIndex)
     }
 
-    const touchStart = e => setMouseX(e.touches[0].clientX)
-    const touchMove = e =>{
-        const moveX = e.changedTouches[0].clientX - mouseX
+    const touchStart = event => {
+        const {clientX, clientY} = event.touches[0];
+        setMousePos({clientX, clientY})
+    }
+
+    const touchMove = event =>{
+        const moveX = event.changedTouches[0].clientX - mousePos.clientX
         if(moveX && (left + moveX)){
             setLeft(-(index * width)+moveX)
+            swiping({start:mousePos,event, index})
         }
     }
-
-    const TouchEnd  = e =>{
-        const amount = mouseX - e.changedTouches[0].clientX;
-
-        if(amount < 0 && width/3 < Math.abs(amount)){
+    const TouchEnd  = event =>{
+        const amount = mousePos.clientX - event.changedTouches[0].clientX;
+        if(amount < 0 && 60 < Math.abs(amount)){
             swipe(index-1)
-        } else if(amount > 0 && width/3 < amount){
+        } else if(amount > 0 && 60 < amount){
             swipe(index+1)
         } else{
             returnCenter()
         }
     }
-
     const returnCenter = ()=> {
-        setMouseX(0)
+        setMousePos({clientX:0,clientY:0})
         beforeSwipe()
     }
 
     return (
         <div className='tnswiper tnswiper--visible' ref={tnSwiperRef} style={{height:height+'px'}} >
-            <div className={`tnswiper__wrapper tnswiper__wrapper--display-flex tnswiper__wrapper--align-top ${moving ? 'tnswiper__wrapper--moving' : ''} `}
+            <div className={`tnswiper__wrapper tnswiper__wrapper--display-flex tnswiper__wrapper--align-top ${isMoving ? 'tnswiper__wrapper--is-moving' : ''} `}
                 style={{left:(left-width)+'px', width:width*(slidingItems.length+2)}}
                 ref={swiperWrapRef}
                 onTransitionEnd={(e)=>{afterSwipe(e)}}
@@ -120,7 +122,7 @@ export const TinySwiper = props => {
                             // index가 slidingItems.length와 같거나 높아지면 0으로. index가 0보다 작아지면 slidingItems.length-1로.
                             slidingItems.map((slidingItem, idx)=>(
                                 <button className={"tnswiper__indicator " +
-                                    (idx === (index >= slidingItems.length ? 0 : (index < 0 ? slidingItems.length-1 : index) ) ? "tnswiper__indicator--active" :  "")}
+                                    (idx === getAvailableIndex(index) ? "tnswiper__indicator--active" :  "")}
                                     onClick={()=>{swipe(idx)}} key={idx}
                                 >{idx}
                                 </button>
